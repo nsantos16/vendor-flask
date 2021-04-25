@@ -1,20 +1,15 @@
 from fastapi import FastAPI, Depends
+from logging.config import dictConfig
 from sqlalchemy.orm import Session
 
-from config.database import SessionLocal
+from config.logger_config import log_config
+from src.vending_machine.controllers import router as vending_machine_routes
+from src.item.controllers import router as item_routes
 
+# Setup
+dictConfig(log_config)
 app = FastAPI()
 
-
-# Dependencies
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-
-@app.get("/")
-def read_root(db: Session = Depends(get_db)):
-    return {"Hello": "World"}
+# Routes
+app.include_router(vending_machine_routes)
+app.include_router(item_routes)
