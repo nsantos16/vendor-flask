@@ -20,5 +20,9 @@
 5. Run `invoke seed-db`
 6. Run `invoke run`
 
+## Commands
+- For initialize the DB schema `invoke init-db`
+- For drop all the information `invoke drop-all`
+
 ## API Docs
 You can access to API documentation on `/docs`
