@@ -102,3 +102,7 @@ fabric.properties
 .idea/vcs.xml
 .idea/vend-o-matic-api.iml
 .idea/inspectionProfiles/profiles_settings.xml
+
+.__pycache__/*
+.pytest_cache/*
+*.pyc

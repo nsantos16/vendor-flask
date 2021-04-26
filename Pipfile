@@ -9,6 +9,8 @@ uvicorn = "*"
 sqlalchemy = "*"
 pydantic = "*"
 invoke = "*"
+pytest = "*"
+requests = "*"
 
 [dev-packages]
 

@@ -1,6 +1,5 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 from logging.config import dictConfig
-from sqlalchemy.orm import Session
 
 from config.logger_config import log_config
 from src.vending_machine.controllers import router as vending_machine_routes

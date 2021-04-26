@@ -1,44 +1,18 @@
 from sqlalchemy.orm import Session
-from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 
-from config.settings import settings
-
-from .models import VendingMachine
 from .helpers import get_vending_machine
-from . import models, schemas
-
-def get_all_coins_back(db: Session):
-    vending_machine = get_vending_machine()
 
 
-def get_user(db: Session, user_id: int):
-    return db.query(models.User).filter(models.User.id == user_id).first()
-
-
-def get_user_by_email(db: Session, email: str):
-    return db.query(models.User).filter(models.User.email == email).first()
-
-
-def get_users(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(models.User).offset(skip).limit(limit).all()
-
-
-def create_user(db: Session, user: schemas.UserCreate):
-    fake_hashed_password = user.password + "notreallyhashed"
-    db_user = models.User(email=user.email, hashed_password=fake_hashed_password)
-    db.add(db_user)
+def get_coins_back(db: Session):
+    vending_machine = get_vending_machine(db)
+    saved_coins = vending_machine.saved_coins
+    vending_machine.saved_coins = 0
     db.commit()
-    db.refresh(db_user)
-    return db_user
+    return saved_coins
 
 
-def get_items(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(models.Item).offset(skip).limit(limit).all()
-
-
-def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
-    db_item = models.Item(**item.dict(), owner_id=user_id)
-    db.add(db_item)
+def add_coins(coins: int, db: Session):
+    vending_machine = get_vending_machine(db)
+    vending_machine.saved_coins += coins
     db.commit()
-    db.refresh(db_item)
-    return db_item
+    return vending_machine.saved_coins
