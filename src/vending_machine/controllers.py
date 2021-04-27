@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from config.database import get_db, engine
 from src.constants import X_COINS
 
-from .manager import get_coins_back, add_coins
+from .manager import get_coins_back, add_coins, get_saved_coins
 from .schemas import PutCoinSchema
 from . import models
 
@@ -12,6 +12,13 @@ models.Base.metadata.create_all(bind=engine)
 router = APIRouter(
     tags=["Vending Machine"],
 )
+
+
+@router.get("/")
+async def get_coins_entered(db: Session = Depends(get_db)):
+    entered_coins = get_saved_coins(db)
+    headers = {X_COINS: str(entered_coins)}
+    return Response(status_code=status.HTTP_204_NO_CONTENT, headers=headers)
 
 
 @router.put("/")

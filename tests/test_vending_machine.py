@@ -42,7 +42,7 @@ def test_buy_no_stock_item():
     assert inventory_response.status_code == status.HTTP_200_OK
     items = inventory_response.json()
 
-    item = items[0]
+    item = items[1]
     assert item["stock"] == 5
 
     for i in range(item["stock"]):
