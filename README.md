@@ -24,6 +24,7 @@
 ## Commands
 - For initialize the DB schema `invoke init-db`
 - For drop all the information `invoke drop-all`
+- For running tests `pytest`
 
 ## API Docs
 You can access to API documentation on `/docs`
