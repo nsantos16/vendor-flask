@@ -14,6 +14,9 @@ class Settings(BaseSettings):
     test_database_name: str = "vend_testing"
     test_database_host: str = "127.0.0.1"
 
+    # CORS
+    allow_origin: str = "http://localhost:3000"
+
     # Feature flags
     feat_flag_more_than_one_coin: bool = False
 

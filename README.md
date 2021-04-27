@@ -3,8 +3,8 @@
 ## Getting Started
 1. Clone the repository
 2. Install dependencies with pipenv: `pipenv install`
-3. Create Postgres Databases for production and testing enviornments
-4. Create and export the next enviornment varaibles:
+3. Create Postgres Databases for production and testing environments
+4. Create and export the next environment variables:
 
 | Variable               | Description                  | Default value |
 |------------------------|------------------------------|---------------|
@@ -16,6 +16,7 @@
 | TEST_DATABASE_PASSWORD | Postgres DB password test    | postgres      |
 | TEST_DATABASE_NAME     | Name of the Postgres test DB | vend_testing  |
 | TEST_DATABASE_HOST     | Postgres Test DB Host        | 127.0.0.1     |
+| ALLOW_ORIGIN     | CORS origin allowed        | http://localhost:3000     |
 
 5. Run `invoke seed-db`
 6. Run `invoke run`
