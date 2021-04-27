@@ -12,7 +12,8 @@ ITEM_PRICE = 2
 def get_items(db: Session):
     vending_machine = get_vending_machine(db)
     [delattr(item, "vending_machine_id") for item in vending_machine.items]
-    return vending_machine.items
+    sorted_items = sorted(vending_machine.items, key=lambda k: k.id)
+    return sorted_items
 
 
 def _empty_saved_coins(vending_machine: VendingMachine, db: Session):
